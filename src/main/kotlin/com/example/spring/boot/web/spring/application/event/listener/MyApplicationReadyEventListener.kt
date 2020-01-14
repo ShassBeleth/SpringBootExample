@@ -4,6 +4,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.ApplicationListener
 
 /**
+ * アプリ起動中に発火するイベント
  * アプリケーションがリクエストを受け付けられるようになった時のイベント
  */
 class MyApplicationReadyEventListener : ApplicationListener<ApplicationReadyEvent> {

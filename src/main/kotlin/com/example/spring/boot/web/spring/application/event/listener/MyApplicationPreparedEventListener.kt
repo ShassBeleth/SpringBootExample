@@ -4,6 +4,7 @@ import org.springframework.boot.context.event.ApplicationPreparedEvent
 import org.springframework.context.ApplicationListener
 
 /**
+ * アプリ起動中に発火するイベント
  * Beanロード後、リフレッシュ前イベント
  */
 class MyApplicationPreparedEventListener : ApplicationListener<ApplicationPreparedEvent> {

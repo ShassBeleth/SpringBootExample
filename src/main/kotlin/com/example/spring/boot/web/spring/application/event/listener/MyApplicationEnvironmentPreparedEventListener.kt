@@ -4,6 +4,7 @@ import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEven
 import org.springframework.context.ApplicationListener
 
 /**
+ * アプリ起動中に発火するイベント
  * Environment作成前イベント
  */
 class MyApplicationEnvironmentPreparedEventListener : ApplicationListener<ApplicationEnvironmentPreparedEvent> {

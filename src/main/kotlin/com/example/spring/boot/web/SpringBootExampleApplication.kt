@@ -1,13 +1,12 @@
 package com.example.spring.boot.web
 
 import com.example.spring.boot.web.spring.application.event.listener.*
+import org.springframework.beans.factory.BeanNotOfRequiredTypeException
 import org.springframework.boot.SpringApplication
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.context.event.*
-import org.springframework.boot.runApplication
-import org.springframework.context.ApplicationListener
-import org.springframework.context.annotation.ComponentScan
+import org.springframework.boot.diagnostics.AbstractFailureAnalyzer
+import org.springframework.boot.diagnostics.FailureAnalysis
+
 
 /**
  * エントリポイント
@@ -29,7 +28,7 @@ fun main(args: Array<String>) {
 
 	val application = SpringApplication(SpringBootExampleApplication::class.java)
 
-	// 各種イベント追加
+	// アプリ起動中に発火する各種イベント追加
 	application.addListeners( MyApplicationStartingEventListener() )
 	application.addListeners( MyApplicationEnvironmentPreparedEventListener() )
 	application.addListeners( MyApplicationContextInitializedEventListener() )
@@ -44,4 +43,3 @@ fun main(args: Array<String>) {
 	// runApplication<SpringBootExampleApplication>(*args)
 
 }
-
