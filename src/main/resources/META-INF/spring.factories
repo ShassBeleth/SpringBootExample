@@ -1,0 +1,3 @@
+org.springframework.boot.diagnostics.FailureAnalyzer =\
+  com.example.spring.boot.web.failure.analyzer.TempFailureAnalyzer ,\
+  com.example.spring.boot.web.failure.analyzer.MyPortInUseExceptionFailureAnalyzer
