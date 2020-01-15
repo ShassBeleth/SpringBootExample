@@ -1,3 +1,4 @@
+# カスタムFailureAnalyzerを登録する
 org.springframework.boot.diagnostics.FailureAnalyzer =\
-  com.example.spring.boot.web.failure.analyzer.TempFailureAnalyzer ,\
-  com.example.spring.boot.web.failure.analyzer.MyPortInUseExceptionFailureAnalyzer
+  com.example.spring.boot.web.failure.analyzer.MyPortInUseFailureAnalyzer ,\
+  com.example.spring.boot.web.failure.analyzer.SampleFailureAnalyzer

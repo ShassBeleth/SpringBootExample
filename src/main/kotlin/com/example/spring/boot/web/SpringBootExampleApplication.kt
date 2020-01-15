@@ -1,11 +1,11 @@
 package com.example.spring.boot.web
 
 import com.example.spring.boot.web.spring.application.event.listener.*
-import org.springframework.beans.factory.BeanNotOfRequiredTypeException
 import org.springframework.boot.SpringApplication
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.diagnostics.AbstractFailureAnalyzer
-import org.springframework.boot.diagnostics.FailureAnalysis
+import org.springframework.boot.runApplication
+import org.springframework.context.annotation.ComponentScan
 
 
 /**
