@@ -1,0 +1,9 @@
+Application Version : ${application.version}
+Application Formatted Version : ${application.formatted-version}
+Spring Boot Version : ${spring-boot.version}
+Spring Boot Formatted Version : ${spring-boot.formatted-version}
+Ansi Name : ${Ansi.NAME}
+Ansi Color Name : ${AnsiColor.NAME}
+Ansi Background Name : ${AnsiBackground.NAME}
+Ansi Style Name : ${AnsiStyle.NAME}
+Application Title : ${application.title}
