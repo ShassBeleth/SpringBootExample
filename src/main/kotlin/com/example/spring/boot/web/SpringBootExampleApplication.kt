@@ -1,11 +1,16 @@
 package com.example.spring.boot.web
 
 import com.example.spring.boot.web.spring.application.event.listener.*
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.ApplicationArguments
+import org.springframework.boot.CommandLineRunner
+import org.springframework.boot.ExitCodeGenerator
 import org.springframework.boot.SpringApplication
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.runApplication
-import org.springframework.context.annotation.ComponentScan
+import org.springframework.context.annotation.Bean
+import org.springframework.core.annotation.Order
+import org.springframework.stereotype.Component
+import kotlin.system.exitProcess
 
 
 /**
@@ -19,6 +24,15 @@ import org.springframework.context.annotation.ComponentScan
 // @ComponentScan
 
 class SpringBootExampleApplication
+
+///**
+// *　4.1.10 Application Exit
+// * TODO Qiitaまとめてない
+// */
+//@Bean
+//fun exitCodeGenerator(): ExitCodeGenerator? {
+//	return ExitCodeGenerator { 42 }
+//}
 
 /**
  * エントリポイント
@@ -43,3 +57,38 @@ fun main(args: Array<String>) {
 	// runApplication<SpringBootExampleApplication>(*args)
 
 }
+
+///**
+// * 4.1.8 Accessing Application Arguments
+// * TODO Qiitaまとめてない
+// */
+//@Component
+//class ApplicationArgumentsSample @Autowired constructor(args: ApplicationArguments) {
+//	init {
+//		println( "Application Arguments Sample Constructor" )
+//		val debug = args.containsOption("debug") // 例 > java -jar hoge.jar --debug
+//		val nonOptionArgs = args.nonOptionArgs // 例 > java -jar hoge.jar aaa bbb ccc
+//		println( debug )
+//		for( nonOptionArg in nonOptionArgs ) {
+//			println( nonOptionArg )
+//		}
+//	}
+//}
+///**
+// * 4.1.9 Command Line Runner
+// * TODO Qiitaまとめてない
+// */
+//@Order( 2 )
+//@Component
+//class MyCommandLineRunner1 : CommandLineRunner {
+//	override fun run(vararg args: String) {
+//		println( "Command Line Runner 1" )
+//	}
+//}
+//@Order( 1 )
+//@Component
+//class MyCommandLineRunner2 : CommandLineRunner {
+//	override fun run(vararg args: String) {
+//		println( "Command Line Runner 2" )
+//	}
+//}
