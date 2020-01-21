@@ -1,16 +1,16 @@
-package com.example.spring.boot.web.sample
+package com.example.spring.boot.web.sample2
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping( "/sample")
-class SampleController {
+@RequestMapping( "/sample2")
+class Sample2Controller {
 
     @GetMapping("/hello")
-    fun getHello() : SampleResponse {
-        val response : SampleResponse = SampleResponse()
+    fun getHello() : Sample2Response {
+        val response : Sample2Response = Sample2Response()
         response.id = 1
         response.text = "Hello World"
         return response
@@ -18,7 +18,7 @@ class SampleController {
 
 }
 
-class SampleResponse{
+class Sample2Response{
     var id : Int = 0
     var text : String = ""
 }
