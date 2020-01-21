@@ -17,6 +17,7 @@ java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
 	mavenCentral()
+	jcenter()
 }
 
 val developmentOnly: Configuration by configurations.creating
@@ -43,6 +44,12 @@ dependencies {
 
 	// warファイルを作成するなら以下を追加
 	// providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+
+	// spring fox
+	implementation( "io.springfox:springfox-swagger2:2.9.2")
+	// This is still in incubation.
+	// implementation( "io.springfox:springfox-data-rest:2.9.2")
+	implementation( "io.springfox:springfox-swagger-ui:2.9.2" )
 
 }
 
