@@ -1,4 +1,4 @@
-package com.example.spring.boot.web.sample2
+package com.example.spring.boot.web.controller.sample2
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
