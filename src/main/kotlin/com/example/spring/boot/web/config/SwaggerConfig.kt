@@ -1,6 +1,9 @@
 package com.example.spring.boot.web.config
 
+import com.example.spring.boot.web.annotation.IgnoreSwaggerDocument
+import com.example.spring.boot.web.controller.spring.fox.example.ignore.IgnorePackageController
 import com.fasterxml.classmate.TypeResolver
+import com.google.common.base.Predicates.not
 import com.google.common.collect.Lists
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.context.request.async.DeferredResult
 import springfox.documentation.builders.ParameterBuilder
 import springfox.documentation.builders.PathSelectors
+import springfox.documentation.builders.PathSelectors.regex
 import springfox.documentation.builders.RequestHandlerSelectors
 import springfox.documentation.builders.ResponseMessageBuilder
 import springfox.documentation.schema.AlternateTypeRules
@@ -26,7 +30,9 @@ import springfox.documentation.swagger.web.*
 import springfox.documentation.swagger2.annotations.EnableSwagger2
 import java.time.LocalDate
 
-
+/**
+ * Swaggerの設定
+ */
 @Configuration
 @EnableSwagger2
 class SwaggerConfig {
@@ -37,9 +43,29 @@ class SwaggerConfig {
     @Bean
     fun configurateApiDocument(): Docket = Docket(DocumentationType.SWAGGER_2)
             .select()
-            .apis(RequestHandlerSelectors.any())
-            .paths( PathSelectors.any() )
-            .build()
+
+            // API仕様書に表示するAPIをアノテーションで指定
+            // 全てのAPIを表示
+            // .apis(RequestHandlerSelectors.any())
+            // 全てのAPIを非表示
+            // .apis(RequestHandlerSelectors.none())
+            // 特定のアノテーションがクラスについているAPIのみ非表示
+            .apis(not(RequestHandlerSelectors.withClassAnnotation(IgnoreSwaggerDocument::class.java)))
+            // 特定のアノテーションがメソッドについているAPIのみ非表示
+            .apis(not(RequestHandlerSelectors.withMethodAnnotation(IgnoreSwaggerDocument::class.java)))
+            // 特定のパッケージのAPIのみ非表示
+            .apis(not(RequestHandlerSelectors.basePackage(IgnorePackageController::class.java.packageName)))
+
+            // 全てのAPIを表示
+             .paths(PathSelectors.any())
+            // 全てのAPIを非表示
+            // .paths(PathSelectors.none())
+            // antPatternで該当のAPIを非表示
+            // .paths(not(PathSelectors.ant("/sample/**")))
+            // 特定のパスのAPIのみ非表示
+            // .paths(not(regex("/ignore/*")))
+
+             .build()
             .pathMapping("/")
             .directModelSubstitute(LocalDate::class.java, String::class.java)
             .genericModelSubstitutes(ResponseEntity::class.java)
@@ -81,7 +107,8 @@ class SwaggerConfig {
                     )
             )
             .tags(Tag("Pet Service", "All apis relating to pets"))
-//    .additionalModels(typeResolver!!.resolve(AdditionalModel::class.java))
+
+            // .additionalModels(typeResolver!!.resolve(AdditionalModel::class.java))
 
     fun defaultAuth(): List<SecurityReference> {
         val authorizationScopes = arrayOfNulls<AuthorizationScope>(1)

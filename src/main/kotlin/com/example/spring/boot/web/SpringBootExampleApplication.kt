@@ -80,11 +80,10 @@ fun main(args: Array<String>) {
 	application.addListeners( MyApplicationStartedEventListener() )
 	application.addListeners( MyApplicationReadyEventListener() )
 
-	application.run(*args)
-
 	// Spring Initializrでの生成時に記載されてたアプリ起動メソッド
 	// これの代わりにapplication.run(*args)を使用している
 	// runApplication<SpringBootExampleApplication>(*args)
+	application.run(*args)
 
 }
 
