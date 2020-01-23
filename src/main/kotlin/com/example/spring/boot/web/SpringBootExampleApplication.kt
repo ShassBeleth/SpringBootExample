@@ -1,8 +1,8 @@
 package com.example.spring.boot.web
 
-import com.example.spring.boot.web.sample.HogeController
-import com.example.spring.boot.web.sample.SampleController
-import com.example.spring.boot.web.sample.SampleResponse
+import com.example.spring.boot.web.controller.sample.HogeController
+import com.example.spring.boot.web.controller.sample.SampleController
+import com.example.spring.boot.web.controller.sample.SampleResponse
 import com.example.spring.boot.web.spring.application.event.listener.*
 import com.fasterxml.classmate.TypeResolver
 import com.google.common.base.Predicates.not
