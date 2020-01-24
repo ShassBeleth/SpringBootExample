@@ -6,6 +6,7 @@ import com.fasterxml.classmate.TypeResolver
 import com.google.common.base.Predicates.not
 import com.google.common.collect.Lists
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.ResponseEntity
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.context.request.async.DeferredResult
 import springfox.documentation.builders.ParameterBuilder
 import springfox.documentation.builders.PathSelectors
-import springfox.documentation.builders.PathSelectors.regex
 import springfox.documentation.builders.RequestHandlerSelectors
 import springfox.documentation.builders.ResponseMessageBuilder
 import springfox.documentation.schema.AlternateTypeRules
@@ -40,6 +40,14 @@ class SwaggerConfig {
     @Autowired
     private val typeResolver: TypeResolver? = null
 
+    /**
+     * コンテキストパス
+     * application.propertiesからserver.servlet.context-pathを取得
+     * 指定されていない場合は「/」を代入（pathMappingの引数にnullが入らない）
+     */
+    @Value("\${server.servlet.context-path:/}")
+    private val contextPath : String? = null
+
     @Bean
     fun configurateApiDocument(): Docket = Docket(DocumentationType.SWAGGER_2)
             .select()
@@ -65,8 +73,11 @@ class SwaggerConfig {
             // 特定のパスのAPIのみ非表示
             // .paths(not(regex("/ignore/*")))
 
-             .build()
-            .pathMapping("/")
+            .build()
+
+            // APIのパスにコンテキストパスを含める
+            .pathMapping(contextPath)
+
             .directModelSubstitute(LocalDate::class.java, String::class.java)
             .genericModelSubstitutes(ResponseEntity::class.java)
             .alternateTypeRules(
