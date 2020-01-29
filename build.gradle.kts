@@ -46,10 +46,18 @@ dependencies {
 	// providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 
 	// spring fox
-	implementation( "io.springfox:springfox-swagger2:2.9.2")
+	// spring foxが依存しているライブラリの問題で、SwaggerUIのページを表示した時に警告が表示される
+	// 依存ライブラリを取り除き、別バージョンのライブラリを入れることで警告を回避
+	implementation("io.springfox:springfox-swagger2:2.9.2") {
+		exclude(module = "swagger-annotations")
+		exclude(module = "swagger-models")
+	}
+	implementation("io.swagger:swagger-annotations:1.5.21")
+	implementation("io.swagger:swagger-models:1.5.21")
 	// This is still in incubation.
 	// implementation( "io.springfox:springfox-data-rest:2.9.2")
 	implementation( "io.springfox:springfox-swagger-ui:2.9.2" )
+
 
 }
 
